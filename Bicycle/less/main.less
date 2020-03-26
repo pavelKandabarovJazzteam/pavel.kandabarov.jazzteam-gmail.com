@@ -2,8 +2,15 @@
 //Text color
 @text: #848789;
 @title: #353738;
-
-
+@import url('../fonts/stylesheet.css');
+@keyframes slide-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-450px);
+    }
+}
 body{
     padding: 0;
     margin: 0;
@@ -41,9 +48,9 @@ body{
     &__content{
         display: grid;
         grid-template-areas:
-        ". icon ."
-        ". title ."
-        ". text .";
+                ". icon ."
+                ". title ."
+                ". text .";
         grid-template-columns: 15% 1fr 15%;
         padding: 120px 0;
         text-align: center;
@@ -71,20 +78,27 @@ body{
 .block1{
     display: grid;
     grid-template-areas:
-    "bike1 text"
-    "bike1 bike2";
+            "bike1 text"
+            "bike1 bike2";
     grid-template-rows: 2fr 1fr;
     grid-template-columns: 2fr 1fr;
     align-items: end;
+    margin-top: -5px;
     &__bike1{
         grid-area: bike1;
+        position: relative;
+        overflow: hidden;
         & img{
             width: 100%;
+            transition: 1s;
+        }
+        & img:hover {
+            transform: scale(1.4);
         }
     }
     &__text{
         grid-area: text;
-        padding: 40px 67px;
+        padding: 30px 67px;
         text-align: center;
         & h2{
             font-size: 18px;
@@ -96,14 +110,54 @@ body{
             font-weight: 400;
             line-height: 30px;
             color: @text;
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                width: 50px;
+                border-bottom: 1px solid #d7d7d7;
+                bottom: -20px;
+                left: 41%;
+            }
         }
     }
     &__bike2{
         grid-area: bike2;
-        & img{
-            width: 100%;
+        position: relative;
+        transition: 1s;
+        overflow: hidden;
+        &::after{
+            content: '';
+            position: absolute;
+            border: 15px solid transparent;
+            border-top: 10px solid #ffffff;
+            text-align: center;
+            left: 46%;
         }
     }
+}
+.css-carousel {
+    width:500%;
+    animation: css-carousel 20s linear infinite;
+    overflow: hidden;
+}
+.css-carousel .css-img{
+    display:inline-block;
+    width: 449px;
+    transition: 1s;
+    &:hover {
+        //transform: scale(1.4);
+    }
+}
+.css-carousel img:not(:first-child){
+    float:left;
+}
+@keyframes css-carousel {
+    0%, 23% {margin-left:0}
+    25%, 48% { margin-left:-100%; }
+    50%, 73% { margin-left:-200%; }
+    75%, 98% { margin-left:-300%;}
+    100% { margin-left:0;}
 }
 .block2{
     display: grid;
@@ -113,11 +167,14 @@ body{
     grid-template-rows: 2fr 1fr;
     grid-template-columns: 1fr 2fr;
     align-items: end;
-    margin-top: -9px;
+    overflow: hidden;
+    margin-top: -8px;
     &__text{
         grid-area: text;
-        padding: 40px 67px;
+        padding: 26px 67px;
         text-align: center;
+        transform: translateX(-450px);
+        transition: 1s;
         & h2{
             font-size: 18px;
             font-weight: 700;
@@ -128,18 +185,43 @@ body{
             font-weight: 400;
             line-height: 30px;
             color: @text;
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                width: 50px;
+                border-bottom: 1px solid #d7d7d7;
+                bottom: -20px;
+                left: 41%;
+            }
         }
     }
     &__bike1{
         grid-area: bike3;
+        position: relative;
+        transform: translateX(-450px);
+        transition: 1s;
+        &::after{
+            content: '';
+            position: absolute;
+            border: 15px solid transparent;
+            border-top: 10px solid #ffffff;
+            text-align: center;
+            left: 46%;
+        }
         & img{
             width: 100%;
         }
     }
     &__bike2{
         grid-area: bike4;
+        position: relative;
+        overflow: hidden;
         & img{
+            //display: none;
+            transform: translateX(900px);
             width: 100%;
+            transition: 1s;
         }
     }
 }
@@ -151,9 +233,10 @@ body{
     grid-template-rows: 2fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: end;
-    margin-top: -9px;
+    margin-top: -10px;
     &__bike1{
         grid-area: bike1;
+        position: relative;
         & img{
             width: 100%;
         }
@@ -166,13 +249,22 @@ body{
     }
     &__bike3{
         grid-area: bike3;
+        position: relative;
+        &::after{
+            content: '';
+            position: absolute;
+            border: 15px solid transparent;
+            border-top: 10px solid #ffffff;
+            text-align: center;
+            left: 46%;
+        }
         & img{
             width: 100%;
         }
     }
     &__text{
         grid-area: text;
-        padding: 40px 67px;
+        padding: 24px 67px;
         text-align: center;
         & h2{
             font-size: 18px;
@@ -184,6 +276,15 @@ body{
             font-weight: 400;
             line-height: 30px;
             color: @text;
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                width: 50px;
+                border-bottom: 1px solid #d7d7d7;
+                bottom: -20px;
+                left: 41%;
+            }
         }
     }
 }
@@ -191,6 +292,8 @@ body{
     text-transform: none !important;
     & span{
         color: @text;
+        font-weight: 300;
+        letter-spacing: 1.8px
     }
 }
 .shop{
@@ -279,7 +382,6 @@ body{
 }
 
 .feedback{
-    //background-color: #f7f7f7;
     &__content{
         display: grid;
         grid-template-areas:
@@ -295,11 +397,11 @@ body{
         &-title{
             grid-area: title;
             color: #353738;
-            text-transform: uppercase;
             font-family: Lato;
-            letter-spacing: 3.6px;
             font-size: 18px;
             font-weight: 700;
+            color: #8b8d8f;
+            font-style: italic;
         }
         &-form{
             grid-area: form;
@@ -339,6 +441,22 @@ body{
         margin-top: -18px;
     }
 }
+img.img{
+    &-logo{
+        position: absolute;
+        width: 113px;
+        left: 43%;
+        top: 38%;
+        z-index: 100;
+    }
+    &-text{
+        position: absolute;
+        width: 208px;
+        left: 26%;
+        top: 43%;
+    }
+}
+
 footer{
     background-color: #f7f7f7;
     display: grid;
@@ -362,9 +480,9 @@ footer{
 @media all and (max-width: 1024px) {
     .block1{
         grid-template-areas:
-        "bike1"
-        "text"
-        "bike2";
+                "bike1"
+                "text"
+                "bike2";
         //grid-template-rows: 1fr;
         grid-template-columns:1fr;
         //-webkit-box-align: end;
