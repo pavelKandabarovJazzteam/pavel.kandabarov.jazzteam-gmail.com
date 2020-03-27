@@ -129,6 +129,14 @@ body {
   bottom: -20px;
   left: 41%;
 }
+.block1__text img {
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+.block1__text img:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
 .block1__bike2 {
   grid-area: bike2;
   position: relative;
@@ -241,6 +249,14 @@ body {
   bottom: -20px;
   left: 41%;
 }
+.block2__text img {
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+.block2__text img:hover {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
 .block2__bike1 {
   grid-area: bike3;
   position: relative;
@@ -334,6 +350,14 @@ body {
   border-bottom: 1px solid #d7d7d7;
   bottom: -20px;
   left: 41%;
+}
+.block3__text img {
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+.block3__text img:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .title-span {
   text-transform: none !important;
@@ -429,6 +453,10 @@ body {
   line-height: 34px;
   font-family: 'Lato Hairline';
   font-style: italic;
+}
+#rotate {
+  -webkit-transition: 3s;
+  transition: 3s;
 }
 #script_galery {
   position: absolute;
