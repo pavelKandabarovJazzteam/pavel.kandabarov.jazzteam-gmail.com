@@ -297,6 +297,8 @@ body{
     }
 }
 .shop{
+    position: relative;
+    overflow: hidden;
     &__galery{
         display: grid;
         grid-template-rows: 1fr 1fr;
@@ -379,6 +381,16 @@ body{
         font-family: 'Lato Hairline';
         font-style: italic;
     }
+}
+
+#script_galery{
+    position: absolute;
+    top: 0;
+    transform: translate(1350px);
+    transition: 1s;
+}
+#galery_visible{
+    transition: 1s;
 }
 
 .feedback{

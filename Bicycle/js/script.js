@@ -15,3 +15,27 @@ function checkViewport(){
     }
 }
 window.onscroll = function(){checkViewport()};
+
+let galery_visible =  document.getElementById('galery_visible');
+let galery_hidden =  document.getElementById('script_galery');
+// galery_visible.style.cssText = "transform: translateX(-450px);";
+let timerId = setInterval(() => qwe(), 2000);
+    let i = 0;
+    let margin_visible = 0;
+    let margin_hidden = 100;
+function qwe(){
+    margin_visible = margin_visible - 33.3;
+    margin_hidden = margin_hidden - 33.3;
+    galery_visible.style.cssText = "transform: translateX(" + margin_visible + "%);";
+    galery_hidden.style.cssText = "transform: translateX(" + margin_hidden + "%);";
+    // console.log(margin_visible);
+    // console.log(margin_hidden);
+    if(margin_visible <= -99){
+        margin_visible = 100;
+    }
+    if(margin_hidden <= -99){
+        margin_hidden = 100;
+    }
+
+    i++;
+}

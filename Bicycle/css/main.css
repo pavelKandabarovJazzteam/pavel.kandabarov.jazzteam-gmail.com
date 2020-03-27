@@ -343,6 +343,10 @@ body {
   font-weight: 300;
   letter-spacing: 1.8px;
 }
+.shop {
+  position: relative;
+  overflow: hidden;
+}
 .shop__galery {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -425,6 +429,18 @@ body {
   line-height: 34px;
   font-family: 'Lato Hairline';
   font-style: italic;
+}
+#script_galery {
+  position: absolute;
+  top: 0;
+  -webkit-transform: translate(1350px);
+          transform: translate(1350px);
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+#galery_visible {
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 .feedback__content {
   display: grid;
