@@ -18,10 +18,10 @@ window.onscroll = function(){checkViewport()};
 
 let galery_visible =  document.getElementById('galery_visible');
 let galery_hidden =  document.getElementById('script_galery');
-let timerId = setInterval(() => qwe(), 2000);
+let timerId = setInterval(() => slider(), 2000);
 let margin_visible = 0;
 let margin_hidden = 100;
-function qwe(){
+function slider(){
     margin_visible = margin_visible - 33.3;
     margin_hidden = margin_hidden - 33.3;
     galery_visible.style.cssText = "transform: translateX(" + margin_visible + "%);";
