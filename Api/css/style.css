@@ -1,0 +1,65 @@
+body {
+  overflow-x: hidden;
+}
+header {
+  text-align: center;
+  background: #f8f9fa;
+}
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+.nav-link {
+  font-size: 19px;
+}
+.container {
+  padding-top: 20px;
+}
+.headlines__card {
+  margin-bottom: 20px;
+}
+.headlines__time {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+}
+#input {
+  color: red;
+}
+#input__sources-technology div div.card,
+#input__sources-sports div div.card,
+#input__sources-science div div.card,
+#input__sources-general div div.card {
+  height: 240px;
+  margin-bottom: 20px;
+}
+#input__sources-technology,
+#input__sources-sports,
+#input__sources-science,
+#input__sources-general {
+  position: relative;
+  margin-bottom: 40px;
+}
+#input__sources-technology::before,
+#input__sources-sports::before,
+#input__sources-science::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  border-bottom: 2px solid #000000;
+  bottom: -20px;
+  left: 0;
+  text-align: center;
+}
+.card-body {
+  position: relative;
+  padding-top: 30px;
+}
+.card-img,
+.card-img-top {
+  height: 180px;
+}

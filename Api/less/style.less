@@ -1,0 +1,62 @@
+body{
+    overflow-x: hidden;
+}
+header{
+    text-align: center;
+    background: #f8f9fa;
+    // margin-bottom: 20px;
+}
+a{
+    color: black;
+    &:hover{
+        text-decoration: none;
+        color: black;
+    }
+}
+.nav-link{
+    font-size: 19px;
+}
+.container{
+    padding-top: 20px;
+    // background-color: red;
+}
+.headlines{
+    &__card{
+        margin-bottom: 20px;
+    }
+    &__time{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 12px;
+    }
+}
+#input{
+    color: red;
+    &__sources{
+        &-technology div div.card, &-sports div div.card, &-science div div.card, &-general div div.card{
+        height: 240px;
+        margin-bottom: 20px;
+        }
+        &-technology, &-sports, &-science, &-general{
+            position: relative;
+            margin-bottom: 40px;
+        }
+        &-technology::before, &-sports::before, &-science::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            border-bottom: 2px solid #000000;
+            bottom: -20px;
+            left: 0;
+            text-align: center;
+        }
+    }
+}
+.card-body{
+    position: relative;
+    padding-top: 30px;
+}
+.card-img, .card-img-top{
+    height: 180px;
+}
