@@ -71,21 +71,31 @@ const calculateUnits = (number) => {
      return result;
  }
 
+
+let add = document.querySelector("#add_text");
+const input = document.querySelector("#input");
+let regxpr = input.dataset.regexp;
+regxpr = new RegExp(regxpr, 'i');
+let alert = document.querySelector(".alert");
+
+
 /** @Adds result to page
  * @param {number} number The input number
  */
 const addReuslt = (number) => {
-    let add = document.querySelector("#add_text");
     add.innerText = "";
     add.append(calculate(number, numberLength(number)));
 }
 
-const check = (number) => {
-    
-}
-
-const input = document.querySelector("#input");
 document.querySelector("#input").oninput = () => {
-    input.value = input.value.replace(/[^\d]/g, '');
-    addReuslt(input.value);
+    input.classList.remove('anim');
+    if (!input.value.match(regxpr)) {
+        add.innerText = "";
+        alert.style.cssText = "opacity: 0;";
+        alert.style.cssText = "opacity: 1;";
+    }else{
+        alert.style.cssText = "opacity: 0;";
+        addReuslt(input.value);
+    }
+
 }

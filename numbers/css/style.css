@@ -31,3 +31,11 @@ div small{
     font-size: small;
     color: grey;
 }
+.alert{
+    transition: 0.5s;
+    color: red;
+    opacity: 0;
+    margin: 0;
+    font-size: 15px;
+    margin-top: -30px;
+}
