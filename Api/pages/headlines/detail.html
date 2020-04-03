@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +11,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="style.css">
+    <title>Detail</title>
 </head>
-
 <body>
     <header>
         <h1><a href="file:///D:/JazzTeam/Bicycle/Api/index.html">Header</a></h1>
@@ -43,19 +42,15 @@
             </div>
         </nav>
     </header>
-
-    <div class="">
-        <div class="container">
-            <div class="row detail">
-
-            </div>
-        </div>
+    <div id="loader"style="width:100%;height:100%;background-color:white;position:fixed;z-index: 10;">
+        <H2 style="opacity: 1;text-align: center;margin-top: 150px;">Данные загружаются</H2>
     </div>
-    <script src="script.js"></script>
-    <script>
-        detail(localStorage.param, localStorage.value);
-        // localStorage.removeItem("qwe");
-    </script>
+    <div class="detail container"> </div>
+    <footer>
+        <script src="../../js/api/api.js"></script>
+        <script src="detail.js"></script>
+        <script>
+        </script>
+    </footer>
 </body>
-
 </html>

@@ -36,3 +36,10 @@ a:hover{
 .head{
     text-align: center;
 }
+.col-md-6.detail-card{
+    margin: 10px 0;
+}
+.card-text-custom{
+    color: black;
+    font-size: 25px;
+}
