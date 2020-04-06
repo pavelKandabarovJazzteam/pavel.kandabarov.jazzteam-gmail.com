@@ -17,6 +17,7 @@ a:hover{
     font-size: 19px;
 }
 .grid-tag{
+    padding-left: 0px;
     display: grid;
     grid-template-areas:
         "country sources"
@@ -42,4 +43,12 @@ a:hover{
 .card-text-custom{
     color: black;
     font-size: 25px;
+}
+.favorites{
+    padding-top: 20px;
+}
+.remove-favorites{
+    position: absolute;
+    right: 15px;
+    top: 10px;
 }

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    console.log(localStorage);
 
     let willIGetNewPhone = new Promise(
         function (resolve, reject) {
@@ -20,5 +21,4 @@ $(document).ready(function(){
         });
     };
     askMom();
-
 });

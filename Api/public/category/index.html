@@ -5,24 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="js/library/jquery.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="/js/library/jquery.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-    <link rel="shortcut icon" href="/img/logo.webp" type="image/x-icon">
-    <title>News</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-    <script src="js/time.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="/js/time.js"></script>
+    <link rel="shortcut icon" href="/img/logo.webp" type="image/x-icon">
+    <link rel="stylesheet" href="/css/pages.css">
+    <title>Category</title>
 </head>
 
 <body>
-    <div id="loader"style="width:100%;height:100%;background-color:white;position:fixed;z-index: 10;">
-        <H2 style="opacity: 1;text-align: center;margin-top: 150px;">Данные загружаются</H2>
-    </div>
     <header>
         <h1><a href="/">Header</a></h1>
         <span style="position:fixed;top:5px;right:5px;" class="time"></span>
@@ -42,51 +39,31 @@
                         <a class="nav-link" href="/public/favorites">Favorites </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 myForm" action="pages/search.html" method="get">
+                <form class="form-inline my-2 my-lg-0 myForm" action="/public/search" method="get">
                     <input id="searchUser" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-dark my-2 my-sm-0 goSearch" type="submit">Go</button>
                 </form>
             </div>
         </nav>
     </header>
+    <div id="loader"style="width:100%;height:100%;background-color:white;position:fixed;z-index: 10;">
+        <H2 style="opacity: 1;text-align: center;margin-top: 150px;">Данные загружаются</H2>
+    </div>
+    <div id="category-add" style="display: none;position: absolute;width: 410px;height: 130px;background: #f8f9fa;z-index: 2;top: 100px;left: 36%;padding-top: 40px;border: 1px solid black;">
+        <h3 style="color: black;text-align: center;color: rgba(0,0,0,.5);">Раздел добавлен!</h3>
+    </div>
+    <div id="alredy-add" style="display: none;position: absolute;width: 410px;height: 130px;background: #f8f9fa;z-index: 2;top: 100px;left: 36%;padding-top: 40px;border: 1px solid black;">
+        <h3 style="color: black;text-align: center;color: rgba(0,0,0,.5);">Раздел уже добавлен!</h3>
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2> <a href="/public/headlines">Top headlines</a></h2>
-            </div>
+        <button class="btn btn-warning mt-3 add-favorites">Add to favorites</button>
+        <div class="row category">
+
         </div>
-        <div id="input-headlines" class="row"></div>
-        <div class="row">
-            <div class="col-12">
-                <h2><a href="#">Source</a></h2>
-            </div>
-            <div class="col-12">
-                <h4><a href="#">Technology</a></h4>
-            </div>
-        </div>
-        <div id="input__sources-technology" class="row"></div>
-        <div class="row">
-            <div class="col-12">
-                <h4><a href="#">Sports</a></h4>
-            </div>
-        </div>
-        <div id="input__sources-sports" class="row"></div>
-        <div class="row">
-            <div class="col-12">
-                <h4><a href="#">Science</a></h4>
-            </div>
-        </div>
-        <div id="input__sources-science" class="row"></div>
-        <div class="row">
-            <div class="col-12">
-                <h4><a href="#">General</a></h4>
-            </div>
-        </div>
-        <div id="input__sources-general" class="row"></div>
     </div>
     <footer>
-        <script src="js/api/api.js"></script>
-        <script src="js/index.js"></script>
+        <script src="/js/api/api.js"></script>
+        <script src="/js/category/category.js"></script>
     </footer>
 </body>
 

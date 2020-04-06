@@ -1,22 +1,14 @@
-let mass = [];
 $(document).ready(function(){
-    // headline();
     source("technology");
     source("sports");
     source("science");
     source("general");
-    // justTest();
-    $('#searchUser').on('keyup', function(e){
-        let search = e.target.value;
-        console.log(search);
-        find(search);
-    });
-    $(".goSearch").click((e)=>{
-        // e.preventDefault();
-        // console.log($('#searchUser').val());
-        localStorage.setItem("search",$('#searchUser').val());
-    });
-    // $('.myForm').submit();
+    let m = moment();
+    if (sessionStorage.length == 0) {
+        sessionStorage.setItem("hours",m.hours());
+        sessionStorage.setItem("minutes",m.minutes());
+        sessionStorage.setItem("second",m.second());
+    }
 });
 
 
