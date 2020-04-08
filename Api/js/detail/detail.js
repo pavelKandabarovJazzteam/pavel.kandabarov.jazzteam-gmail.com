@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     let getApi = new Promise(
         function(resolve, reject) {
-            resolve(getDetail(localStorage.q));
+            resolve(getDetail(getLocal("q")));
         }
     );
     let hideLoader = function() {

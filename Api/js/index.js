@@ -5,9 +5,9 @@ $(document).ready(function() {
     getSource("general");
     let now = moment();
     if (sessionStorage.length == 0) {
-        sessionStorage.setItem("hours", now.hours());
-        sessionStorage.setItem("minutes", now.minutes());
-        sessionStorage.setItem("second", now.second());
+        setSession("hours", now.hours());
+        setSession("minutes", now.minutes());
+        setSession("second", now.second());
     }
 });
 

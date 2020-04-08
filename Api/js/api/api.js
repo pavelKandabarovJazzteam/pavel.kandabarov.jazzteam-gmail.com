@@ -2,6 +2,13 @@
  * //@param {number} number Input number
  * //@return {number}
  */
+const APIKEY = "c32f989c652240dcafaff00a9d107cd6";
+const EVERYTHING = "http://newsapi.org/v2/everything";
+const HEADLINES = "http://newsapi.org/v2/top-headlines";
+const SOURCES = "http://newsapi.org/v2/sources";
+const NO_IMAGE = "/img/noImage.svg.png";
+
+
 
 $('#searchUser').on('keyup', function(e) {
     let search = e.target.value;
@@ -14,9 +21,9 @@ $(".goSearch").click((e) => {
 
 const getNextDetail = (value, url) => {
     $.get(
-        "http://newsapi.org/v2/everything", {
+        EVERYTHING, {
             "q": value,
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+            "apiKey": APIKEY
         },
         (data) => {
             if (data.totalResults > 0) {
@@ -31,14 +38,14 @@ const getNextDetail = (value, url) => {
 
 const getDetail = (value) => {
     $.get(
-        "http://newsapi.org/v2/everything", {
+        EVERYTHING, {
             "q": value,
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+            "apiKey": APIKEY
         },
         (data) => {
             if (data.totalResults > 0) {
                 let tmp = data.articles[0];
-                let result = tmp.urlToImage ? tmp.urlToImage : "/img/noImage.svg.png";
+                let result = tmp.urlToImage ? tmp.urlToImage : NO_IMAGE;
                 $(".detail").append(`
                     <div class="card mb-3">
                         <img src="${result}" class="card-img-top" alt="...">
@@ -65,17 +72,17 @@ const getDetail = (value) => {
 }
 const getHedline = () => {
     $.get(
-        "http://newsapi.org/v2/top-headlines", {
+        HEADLINES, {
             "country": "us",
             "pageSize": 8,
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+            "apiKey": APIKEY
         },
         (data) => {
             if (data.totalResults > 0) {
                 let tmp = data.articles;
                 let result = "";
                 for (let i in tmp) {
-                    result = tmp[i].urlToImage ? tmp[i].urlToImage : "/img/noImage.svg.png";
+                    result = tmp[i].urlToImage ? tmp[i].urlToImage : NO_IMAGE;
                     $("#input-headlines").append(`
                         <div class="col-md-3 col-12 headlines__card">
                             <div class="card">
@@ -108,8 +115,8 @@ const getHedline = () => {
 
 const getSource = (category) => {
     $.get(
-        "http://newsapi.org/v2/sources", {
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6",
+        SOURCES, {
+            "apiKey": APIKEY,
             "category": category
         },
         (data) => {
@@ -141,9 +148,9 @@ const getSource = (category) => {
 
 const getCategory = (param, value) => {
     $.ajax({
-            url: "http://newsapi.org/v2/top-headlines?" + param + "=" + value,
+            url: HEADLINES + "?" + param + "=" + value,
             data: {
-                "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+                "apiKey": APIKEY
             }
         })
         .done(function(data) {
@@ -173,15 +180,15 @@ const getCategory = (param, value) => {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
                 $(".add-favorites").click(() => {
-                    if (Cookies.get("favorites") == undefined) {
-                        Cookies.set("favorites", Cookies.get("favorites") + "?" + localStorage.value);
-                        Cookies.set("favorites-param", Cookies.get("favorites-param") + "?" + localStorage.param);
+                    if (getCookie("favorites") == undefined) {
+                        setCookie("favorites", getCookie("favorites") + "?" + getLocal("value"));
+                        setCookie("favorites-param", getCookie("favorites-param") + "?" + getLocal("param"));
                         $("#category-add").fadeIn("slow");
                         setTimeout(($("#category-add").fadeOut("slow")), 1000000);
                     } else {
-                        if (Cookies.get("favorites").split("?").indexOf(localStorage.value) == -1) {
-                            Cookies.set("favorites", Cookies.get("favorites") + "?" + localStorage.value);
-                            Cookies.set("favorites-param", Cookies.get("favorites-param") + "?" + localStorage.param);
+                        if (getCookie("favorites").split("?").indexOf(getLocal(value)) == -1) {
+                            setCookie("favorites", getCookie("favorites") + "?" + getLocal("value"));
+                            setCookie("favorites-param", getCookie("favorites-param") + "?" + getLocal("param"));
                             $("#category-add").fadeIn("slow");
                             setTimeout(($("#category-add").fadeOut("slow")), 1000000);
                         } else {
@@ -206,18 +213,18 @@ const getCategory = (param, value) => {
 
 const search = (value, sortBy) => {
     $.get(
-        "http://newsapi.org/v2/everything", {
+        EVERYTHING, {
             "sortBy": sortBy,
             "pageSize": 100,
             "q": value,
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+            "apiKey": APIKEY
         },
         (data) => {
             let tmp = data.articles;
             if (data.totalResults > 0) {
                 let result = "";
                 for (let i in tmp) {
-                    result = tmp[i].urlToImage ? tmp[i].urlToImage : "//img/noImage.svg.png";
+                    result = tmp[i].urlToImage ? tmp[i].urlToImage : NO_IMAGE;
                     $(".popHere").append(`
                         <div class="col-md-3 col-12 headlines__card">
                             <div class="card">
@@ -237,7 +244,7 @@ const search = (value, sortBy) => {
                 $(".popHere").append(`<h1>NOT FOUND</h1>`);
             }
             $(".main-detail").click(function() {
-                getNextDetail($(this)[0].dataset.target.substring(0, 15), $(this)[0].dataset.url);
+                getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
             });
         },
     );
@@ -248,8 +255,8 @@ const search = (value, sortBy) => {
  */
 const find = (start) => {
     $.get(
-        "http://newsapi.org/v2/everything", {
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6",
+        EVERYTHING, {
+            "apiKey": APIKEY,
             "q": start,
         },
     ).done(function(start) {

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     let getApi = new Promise(
         function(resolve, reject) {
-            resolve(search(localStorage.search));
+            resolve(search(getLocal("search")));
         }
     );
     let hideLoader = function() {
@@ -24,7 +24,7 @@ $(document).ready(function() {
     $("#sortBy").change(() => {
         $('#loader').show();
         $(".row.popHere").empty();
-        search(localStorage.search, $("#sortBy").val())
+        search(getLocal("search"), $("#sortBy").val())
         setTimeout(hideLoader, 2500)
     })
 

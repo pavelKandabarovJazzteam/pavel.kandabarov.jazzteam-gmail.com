@@ -15,7 +15,8 @@
     <link rel="shortcut icon" href="/img/logo.webp" type="image/x-icon">
     <title>News</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-    <script src="js/time.js"></script>
+    <script src="js/utilities/getSetItem.js"></script>
+    <script src="js//utilities/time.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -47,8 +48,6 @@
         <h1><a href="/">Header</a></h1>
         <span style="position:fixed;top:5px;right:5px;" class="time"></span>
         <nav class="navbar navbar-expand-lg navbar-light">
-
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -62,7 +61,7 @@
                         <a class="nav-link" href="/public/favorites">Favorites </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 myForm" action="pages/search.html" method="get">
+                <form class="form-inline my-2 my-lg-0 myForm" action="public/search" method="get">
                     <input id="searchUser" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-dark my-2 my-sm-0 goSearch" type="submit">Go</button>
                 </form>

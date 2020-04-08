@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     let getApi = new Promise(
         function(resolve, reject) {
-            resolve(getCategory(localStorage.param, localStorage.value));
+            resolve(getCategory(getLocal("param"), getLocal("value")));
         }
     );
 
