@@ -10,7 +10,7 @@ const NO_IMAGE = "/img/noImage.svg.png";
 
 
 
-$('#searchUser').on('keyup', function(e) {
+$('#searchUser').on('keyup', (e) => {
     let search = e.target.value;
     find(search);
 });
@@ -98,7 +98,7 @@ const getHedline = () => {
                     `);
                     result = "";
                 }
-                $(".main-detail").click(function() {
+                $(".main-detail").click(() => {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
             } else {
@@ -153,7 +153,7 @@ const getCategory = (param, value) => {
                 "apiKey": APIKEY
             }
         })
-        .done(function(data) {
+        .done((data) => {
             let tmp = data.articles;
             let result = "";
             if (data.totalResults > 0) {
@@ -176,7 +176,7 @@ const getCategory = (param, value) => {
                     `);
                     }
                 }
-                $(".btn.btn-outline-light.detail-link").click(function() {
+                $(".btn.btn-outline-light.detail-link").click(() => {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
                 $(".add-favorites").click(() => {
@@ -243,7 +243,7 @@ const search = (value, sortBy) => {
             } else {
                 $(".popHere").append(`<h1>NOT FOUND</h1>`);
             }
-            $(".main-detail").click(function() {
+            $(".main-detail").click(() => {
                 getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
             });
         },
@@ -259,7 +259,7 @@ const find = (start) => {
             "apiKey": APIKEY,
             "q": start,
         },
-    ).done(function(start) {
+    ).done((start) => {
         for (let show in start) {
             for (let i in start[show]) {
                 if (start[show][i].title != undefined || start[show][i].title != null) {
@@ -267,7 +267,7 @@ const find = (start) => {
                 }
             }
         }
-        $(function() {
+        $(() => {
             mass
         });
         $("#searchUser").autocomplete({
