@@ -27,7 +27,4 @@ describe("Test of input number", function() {
             assert.strictEqual(calculate(key, 3), total[key]);
         });
     }
-    // it('Output total', function() {
-    //     assert.equal(calculate(100, 3), "C");
-    // });
 });

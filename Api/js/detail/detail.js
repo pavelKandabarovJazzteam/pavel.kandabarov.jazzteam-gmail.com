@@ -1,21 +1,21 @@
-$(document).ready(function() {
+$(document).ready(() => {
 
     let getApi = new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
             resolve(getDetail(getLocal("q")));
         }
     );
-    let hideLoader = function() {
+    let hideLoader = () => {
         return new Promise(
-            function(resolve, reject) {
+            (resolve, reject) => {
                 resolve($('#loader').hide());
             }
         );
     };
-    let runPromise = function() {
+    let runPromise = () => {
         getApi
             .then(setTimeout(hideLoader, 2000))
-            .catch(function(error) {
+            .catch((error) => {
                 $(".detail").append(`
                 <div class="card mb-3">
                     <h1>Something went wrong</h1>

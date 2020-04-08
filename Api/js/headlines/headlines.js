@@ -1,15 +1,15 @@
-$(document).ready(function() {
-    $(".category").click(function() {
+$(document).ready(() => {
+    $(".category").click(() => {
         document.location.href = "/public/category";
         setLocal("param", $(this)[0].classList[2]);
         setLocal("value", $(this)[0].innerText);
     })
-    $(".country").click(function() {
+    $(".country").click(() => {
         setLocal("param", $(this)[0].classList[2]);
         setLocal("value", $(this)[0].innerText);
         document.location.href = "/public/category";
     })
-    $(".sources").click(function() {
+    $(".sources").click(() => {
         setLocal("param", $(this)[0].classList[2]);
         setLocal("value", $(this)[0].innerText);
         document.location.href = "/public/category";

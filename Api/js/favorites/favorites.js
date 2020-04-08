@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
     let favorites = getCookie("favorites");
     let favoritesParam = getCookie("favorites-param");
     let tmp = getMass(favorites, "?");
@@ -19,12 +19,12 @@ $(document).ready(function() {
                 break;
         }
     }
-    $(".btn.btn-dark.favorites-link").click(function() {
+    $(".btn.btn-dark.favorites-link").click(() => {
         setLocal("param", $(this)[0].dataset.param);
         setLocal("value", $(this).text());
         document.location.href = "/public/category";
     });
-    $(".remove-favorites").click(function() {
+    $(".remove-favorites").click(() => {
         removeCookies("favorites");
         removeCookies("favorites-param");
         $(".btn.btn-dark.favorites-link").remove();

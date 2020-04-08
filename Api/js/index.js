@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
     getSource("technology");
     getSource("sports");
     getSource("science");
@@ -12,21 +12,21 @@ $(document).ready(function() {
 });
 
 let getApi = new Promise(
-    function(resolve, reject) {
+    (resolve, reject) => {
         resolve(getHedline());
     }
 );
-let hideLoader = function() {
+let hideLoader = () => {
     return new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
             resolve($('#loader').hide());
         }
     );
 };
-let runPromise = function() {
+let runPromise = () => {
     getApi
         .then(setTimeout(hideLoader, 2000))
-        .catch(function(error) {
+        .catch((error) => {
             $("#input-headlines").append(`
                 <div class="col-md-3 col-12 headlines__card">
                     <h1>Something went wrong</h1>

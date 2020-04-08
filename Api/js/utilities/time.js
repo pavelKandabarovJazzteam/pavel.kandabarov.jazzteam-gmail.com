@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    function timer() {
+$(document).ready(() => {
+    let timer = () => {
         let now = moment();
         now.subtract({
             "hours": sessionStorage.getItem("hours"),
