@@ -1,34 +1,38 @@
-$(document).ready(function(){
-    source("technology");
-    source("sports");
-    source("science");
-    source("general");
-    let m = moment();
+$(document).ready(function() {
+    getSource("technology");
+    getSource("sports");
+    getSource("science");
+    getSource("general");
+    let now = moment();
     if (sessionStorage.length == 0) {
-        sessionStorage.setItem("hours",m.hours());
-        sessionStorage.setItem("minutes",m.minutes());
-        sessionStorage.setItem("second",m.second());
+        sessionStorage.setItem("hours", now.hours());
+        sessionStorage.setItem("minutes", now.minutes());
+        sessionStorage.setItem("second", now.second());
     }
 });
 
-
-let willIGetNewPhone = new Promise(
-    function (resolve, reject) {
-        resolve(headline());
+let getApi = new Promise(
+    function(resolve, reject) {
+        resolve(getHedline());
     }
 );
-let showOff = function () {
+let hideLoader = function() {
     return new Promise(
-        function (resolve, reject) {
+        function(resolve, reject) {
             resolve($('#loader').hide());
         }
     );
 };
-let askMom = function () {
-    willIGetNewPhone
-    .then(setTimeout(showOff,1000))
-    .catch(function (error) {
-        console.log(error.message);
-    });
+let runPromise = function() {
+    getApi
+        .then(setTimeout(hideLoader, 2000))
+        .catch(function(error) {
+            $("#input-headlines").append(`
+                <div class="col-md-3 col-12 headlines__card">
+                    <h1>Something went wrong</h1>
+                </div>
+            `);
+            console.log(error.message);
+        });
 };
-askMom();
+runPromise();

@@ -30,48 +30,49 @@ const getNextDetail = (value, url) => {
 }
 
 const getDetail = (value) => {
+    let self = this;
     $.get(
         "http://newsapi.org/v2/everything", {
             "q": value,
             "apiKey": "c32f989c652240dcafaff00a9d107cd6"
         },
         (data) => {
-            if (data.totalResults > 0) {
-                let tmp = data.articles[0];
-                let result = tmp.urlToImage ? tmp.urlToImage : "/img/noImage.svg.png";
-                $(".detail").append(`
-                    <div class="card mb-3">
-                        <img src="${result}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3>${tmp.source.name}</h3>
-                            <h5 class="card-title">${tmp.title}</h5>
-                            <p class="card-text">${tmp.content}</p>
-                            <p class="card-text">${tmp.author}</p>
-                            <a href="${tmp.url}" class="btn btn-outline-dark">Go to website</a>
-                        </div>
-                        <div class="card-footer text-muted">${tmp.publishedAt}</div>
+            self.totalResults = data.totalResults;
+            let tmp = data.articles[0];
+            let result = tmp.urlToImage ? tmp.urlToImage : "/img/noImage.svg.png";
+            $(".detail").append(`
+                <div class="card mb-3">
+                    <img src="${result}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3>${tmp.source.name}</h3>
+                        <h5 class="card-title">${tmp.title}</h5>
+                        <p class="card-text">${tmp.content}</p>
+                        <p class="card-text">${tmp.author}</p>
+                        <a href="${tmp.url}" class="btn btn-outline-dark">Go to website</a>
                     </div>
-                `);
-            } else {
-                $(".detail").append(`
-                    <div class="card mb-3">
-                        <h1>SERVER WAS BROKEN</h1>
-                    </div>
-                `);
-            }
-
+                    <div class="card-footer text-muted">${tmp.publishedAt}</div>
+                </div>
+            `);
         }
     );
 }
-const getHedline = () => {
-    $.get(
-        "http://newsapi.org/v2/top-headlines", {
-            "country": "us",
-            "pageSize": 8,
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6"
-        },
-        (data) => {
-            if (data.totalResults > 0) {
+
+const ajax = {
+    statusHedline: "",
+    statusSource: "",
+    statusCategory: "",
+    totalResultsSource: 0,
+    getHedline: function(){
+        let self = this;
+        $.get(
+            "http://newsapi.org/v2/top-headlines",
+            {
+                "country": "us",
+                "pageSize": 8,
+                "apiKey": "c32f989c652240dcafaff00a9d107cd6"
+            },
+            (data) => {
+                self.statusHedline = data.status;
                 let tmp = data.articles;
                 let result = "";
                 for (let i in tmp) {
@@ -94,67 +95,52 @@ const getHedline = () => {
                 $(".main-detail").click(function() {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
-            } else {
-                $("#input-headlines").append(`
-                    <div class="col-md-3 col-12 headlines__card">
-                        <h1>SERVER WAS BROKEN</h1>
-                    </div>
-                `);
             }
-        }
-    )
-}
-
-
-const getSource = (category) => {
-    $.get(
-        "http://newsapi.org/v2/sources", {
-            "apiKey": "c32f989c652240dcafaff00a9d107cd6",
-            "category": category
-        },
-        (data) => {
-            if (data.status == "ok") {
+        )
+    },
+    getSource: function(category){
+        let self = this;
+        $.get(
+            "http://newsapi.org/v2/sources", {
+                "apiKey": "c32f989c652240dcafaff00a9d107cd6",
+                "category": category
+            },
+            (data) => {
+                self.statusSource = data.status;
+                self.totalResultsSource = data.totalResults;
                 let tmp = data.sources;
                 for (let i = 0; i < 4; i++) {
                     $("#input__sources-" + category).append(`
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <p class="card-text">${tmp[i].description}</p>
-                              <a href="${tmp[i].url}" class="btn btn-primary">Link</a>
+                              <p class="card-text">${tmp}</p>
+                              <a href="${tmp}" class="btn btn-primary">Link</a>
                             </div>
                           </div>
                         </div>
                     `);
                 }
-            } else {
-                $("#input__sources-" + category).append(`
-                    <div class="col-sm-6">
-                        <h1>SERVER WAS BROKEN</h1>
-                    </div>
-                `);
             }
-        }
-    );
-}
-
-
-const getCategory = (param, value) => {
-    $.ajax({
+        );
+    },
+    getCategory: function (param, value) {
+        let self = this;
+        $.ajax({
             url: "http://newsapi.org/v2/top-headlines?" + param + "=" + value,
             data: {
                 "apiKey": "c32f989c652240dcafaff00a9d107cd6"
             }
         })
         .done(function(data) {
+            self.statusCategory = data.status;
             let tmp = data.articles;
             let result = "";
-            if (data.totalResults > 0) {
-                for (let i in tmp) {
-                    if (tmp[i].urlToImage == "null" || tmp[i].urlToImage == null || tmp[i].urlToImage == "") {
-                        continue;
-                    } else {
-                        $(".category").append(`
+            for (let i in tmp) {
+                if (tmp[i].urlToImage == "null" || tmp[i].urlToImage == null || tmp[i].urlToImage == "") {
+                    continue;
+                } else {
+                    $(".category").append(`
                         <div class="col-md-6 detail-card">
                             <div class="card bg-dark text-white">
                               <img class="card-img" src="${tmp[i].urlToImage}" alt="Card image">
@@ -167,39 +153,32 @@ const getCategory = (param, value) => {
                             </div>
                         </div>
                     `);
+                }
+            }
+            $(".btn.btn-outline-light.detail-link").click(function() {
+                getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
+            });
+            $(".add-favorites").click(()=>{
+                if (Cookies.get("favorites") == undefined) {
+                    Cookies.set("favorites",Cookies.get("favorites") + "?" + localStorage.value);
+                    Cookies.set("favorites-param",Cookies.get("favorites-param") + "?" + localStorage.param);
+                    $("#category-add").fadeIn("slow");
+                    setTimeout(($("#category-add").fadeOut("slow")),1000000);
+                }else{
+                    if (Cookies.get("favorites").split("?").indexOf( localStorage.value ) == -1) {
+                        Cookies.set("favorites",Cookies.get("favorites") + "?" + localStorage.value);
+                        Cookies.set("favorites-param",Cookies.get("favorites-param") + "?" + localStorage.param);
+                        $("#category-add").fadeIn("slow");
+                        setTimeout(($("#category-add").fadeOut("slow")),1000000);
+                    }else{
+                        $("#alredy-add").fadeIn("slow");
+                        setTimeout(($("#alredy-add").fadeOut("slow")),1000000);
                     }
                 }
-                $(".btn.btn-outline-light.detail-link").click(function() {
-                    getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
-                });
-                $(".add-favorites").click(() => {
-                    if (Cookies.get("favorites") == undefined) {
-                        Cookies.set("favorites", Cookies.get("favorites") + "?" + localStorage.value);
-                        Cookies.set("favorites-param", Cookies.get("favorites-param") + "?" + localStorage.param);
-                        $("#category-add").fadeIn("slow");
-                        setTimeout(($("#category-add").fadeOut("slow")), 1000000);
-                    } else {
-                        if (Cookies.get("favorites").split("?").indexOf(localStorage.value) == -1) {
-                            Cookies.set("favorites", Cookies.get("favorites") + "?" + localStorage.value);
-                            Cookies.set("favorites-param", Cookies.get("favorites-param") + "?" + localStorage.param);
-                            $("#category-add").fadeIn("slow");
-                            setTimeout(($("#category-add").fadeOut("slow")), 1000000);
-                        } else {
-                            $("#alredy-add").fadeIn("slow");
-                            setTimeout(($("#alredy-add").fadeOut("slow")), 1000000);
-                        }
-                    }
-                });
-            } else {
-                $(".category").append(`
-                <div class="col-md-6 detail-card">
-                    <h1>SERVER WAS BROKEN</h1>
-                </div>
-            `);
-            }
-
+            });
         })
-};
+    }
+}
 
 
 
@@ -234,7 +213,7 @@ const search = (value, sortBy) => {
                     result = "";
                 }
             } else {
-                $(".popHere").append(`<h1>NOT FOUND</h1>`);
+                $(".popHere").append(`<h1>ДАННЫХ НЕТ</h1>`);
             }
             $(".main-detail").click(function() {
                 getNextDetail($(this)[0].dataset.target.substring(0, 15), $(this)[0].dataset.url);
@@ -245,6 +224,8 @@ const search = (value, sortBy) => {
 
 
 /** ПОИСК
+ * ПОИСК
+ * ПОИСК
  */
 const find = (start) => {
     $.get(

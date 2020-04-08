@@ -18,8 +18,28 @@
     <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
-    <div id="loader"style="width:100%;height:100%;background-color:white;position:fixed;z-index: 10;">
-        <H2 style="opacity: 1;text-align: center;margin-top: 150px;">Данные загружаются</H2>
+    <div class="loader" id="loader">
+        <div class="ball one">
+            <div class="inner"></div>
+        </div>
+        <div class="ball two">
+            <div class="inner"></div>
+        </div>
+        <div class="ball three">
+            <div class="inner"></div>
+        </div>
+        <div class="ball four">
+            <div class="inner"></div>
+        </div>
+        <div class="ball five">
+            <div class="inner"></div>
+        </div>
+        <div class="ball six">
+            <div class="inner"></div>
+        </div>
+        <div class="ball center">
+            <div class="inner"></div>
+        </div>
     </div>
 
     <header>
@@ -51,9 +71,9 @@
             <label for="inputState">Сортировать</label>
             <select id="sortBy" class="form-control" >
                 <option selected></option>
-                <option value="relevancy">relevancy</option>
-                <option value="popularity">popularity</option>
-                <option value="publishedAt">publishedAt</option>
+                <option value="relevancy">Relevance</option>
+                <option value="popularity">Popularity</option>
+                <option value="publishedAt">Published date</option>
 
             </select>
         </div>

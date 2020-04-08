@@ -1,12 +1,12 @@
-$(document).ready(function(){
-    function test(){
-        let m = moment();
-        m.subtract({
-            "hours" : sessionStorage.getItem("hours"),
-            "minutes" : sessionStorage.getItem("minutes"),
-            "seconds" : sessionStorage.getItem("second"),
-        });
-        $(".time").text(m.toString().substr(16, 8))
+$(document).ready(function() {
+    function timer() {
+        let now = moment();
+        now.subtract({
+            "hours": sessionStorage.getItem("hours"),
+            "minutes": sessionStorage.getItem("minutes"),
+            "seconds": sessionStorage.getItem("second"),
+        }).format('HH:mm:ss');
+        $(".time").text(now.format('HH:mm:ss').toString());
     }
-    setInterval(test, 1000);
+    setInterval(timer, 1000);
 });

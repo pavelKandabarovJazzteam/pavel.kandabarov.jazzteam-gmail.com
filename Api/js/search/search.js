@@ -1,28 +1,31 @@
 $(document).ready(function() {
 
-    let willIGetNewPhone = new Promise(
+    let getApi = new Promise(
         function(resolve, reject) {
             resolve(search(localStorage.search));
         }
     );
-    let showOff = function() {
+    let hideLoader = function() {
         return new Promise(
             function(resolve, reject) {
                 resolve($('#loader').hide());
             }
         );
     };
-    let askMom = function() {
-        willIGetNewPhone
-            .then(setTimeout(showOff, 1000))
+    let runPromise = function() {
+        getApi
+            .then(setTimeout(hideLoader, 2000))
             .catch(function(error) {
+                $(".popHere").append(`<h1>NOT FOUND</h1>`);
                 console.log(error.message);
             });
     };
-    askMom();
+    runPromise();
     $("#sortBy").change(() => {
+        $('#loader').show();
         $(".row.popHere").empty();
-        search(localStorage.search,$("#sortBy").val() )
+        search(localStorage.search, $("#sortBy").val())
+        setTimeout(hideLoader, 2500)
     })
 
 });

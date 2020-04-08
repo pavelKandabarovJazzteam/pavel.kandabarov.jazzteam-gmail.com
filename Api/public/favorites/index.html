@@ -19,12 +19,33 @@
     <title>Favorites</title>
 </head>
 <body>
+    <div class="loader" id="loader">
+        <div class="ball one">
+            <div class="inner"></div>
+        </div>
+        <div class="ball two">
+            <div class="inner"></div>
+        </div>
+        <div class="ball three">
+            <div class="inner"></div>
+        </div>
+        <div class="ball four">
+            <div class="inner"></div>
+        </div>
+        <div class="ball five">
+            <div class="inner"></div>
+        </div>
+        <div class="ball six">
+            <div class="inner"></div>
+        </div>
+        <div class="ball center">
+            <div class="inner"></div>
+        </div>
+    </div>
     <header>
         <h1><a href="/">Header</a></h1>
         <span style="position:fixed;top:5px;right:5px;" class="time"></span>
         <nav class="navbar navbar-expand-lg navbar-light">
-
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,17 +68,19 @@
     </header>
     <div class="container" style="position:relative;">
         <h2>Favorites</h2>
-
-        <button class="btn btn-danger remove-favorites">Remove</button>
+        <button class="btn btn-danger remove-favorites">Remove(all)</button>
         <div class="grid-tag">
             <div class="grid-country">
                 <h2>Country</h2>
+                <p class="add-category1">Add some category if you want <a style="color: blue;" href="/public/headlines">Category</a></p>
             </div>
             <div class="grid-sources">
                 <h2>Sources</h2>
+                <p class="add-category2">Add some category if you want <a style="color: blue;" href="/public/headlines">Category</a></p>
             </div>
             <div class="grid-category">
                 <h2>Category</h2>
+                <p class="add-category3">Add some category if you want <a style="color: blue;" href="/public/headlines">Category</a></p>
             </div>
         </div>
     </div>
@@ -65,8 +88,6 @@
         <script src="/js/api/api.js"></script>
         <script src="/js/favorites/favorites.js"></script>
         <script src="/js/category/category.js"></script>
-        <script>
-        </script>
     </footer>
 </body>
 </html>

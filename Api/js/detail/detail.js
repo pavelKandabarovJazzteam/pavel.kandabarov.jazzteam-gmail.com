@@ -1,23 +1,28 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-    let willIGetNewPhone = new Promise(
-        function (resolve, reject) {
+    let getApi = new Promise(
+        function(resolve, reject) {
             resolve(getDetail(localStorage.q));
         }
     );
-    let showOff = function () {
+    let hideLoader = function() {
         return new Promise(
-            function (resolve, reject) {
+            function(resolve, reject) {
                 resolve($('#loader').hide());
             }
         );
     };
-    let askMom = function () {
-        willIGetNewPhone
-        .then(setTimeout(showOff,1000))
-        .catch(function (error) {
-            console.log(error.message);
-        });
+    let runPromise = function() {
+        getApi
+            .then(setTimeout(hideLoader, 2000))
+            .catch(function(error) {
+                $(".detail").append(`
+                <div class="card mb-3">
+                    <h1>Something went wrong</h1>
+                </div>
+            `);
+                console.log(error.message);
+            });
     };
-    askMom();
+    runPromise();
 });
