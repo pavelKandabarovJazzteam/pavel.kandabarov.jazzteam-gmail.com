@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function()  {
     getSource("technology");
     getSource("sports");
     getSource("science");

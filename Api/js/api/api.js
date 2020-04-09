@@ -14,7 +14,7 @@ $('#searchUser').on('keyup', (e) => {
     let search = e.target.value;
     find(search);
 });
-$(".goSearch").click((e) => {
+$(".goSearch").click(function(e) {
     localStorage.setItem("search", $('#searchUser').val());
 });
 
@@ -98,7 +98,7 @@ const getHedline = () => {
                     `);
                     result = "";
                 }
-                $(".main-detail").click(() => {
+                $(".main-detail").click(function() {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
             } else {
@@ -176,10 +176,10 @@ const getCategory = (param, value) => {
                     `);
                     }
                 }
-                $(".btn.btn-outline-light.detail-link").click(() => {
+                $(".btn.btn-outline-light.detail-link").click(function() {
                     getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
                 });
-                $(".add-favorites").click(() => {
+                $(".add-favorites").click(function() {
                     if (getCookie("favorites") == undefined) {
                         setCookie("favorites", getCookie("favorites") + "?" + getLocal("value"));
                         setCookie("favorites-param", getCookie("favorites-param") + "?" + getLocal("param"));
@@ -243,7 +243,7 @@ const search = (value, sortBy) => {
             } else {
                 $(".popHere").append(`<h1>NOT FOUND</h1>`);
             }
-            $(".main-detail").click(() => {
+            $(".main-detail").click( function() {
                 getNextDetail($(this)[0].dataset.target, $(this)[0].dataset.url);
             });
         },
@@ -260,6 +260,7 @@ const find = (start) => {
             "q": start,
         },
     ).done((start) => {
+        let mass = [];
         for (let show in start) {
             for (let i in start[show]) {
                 if (start[show][i].title != undefined || start[show][i].title != null) {

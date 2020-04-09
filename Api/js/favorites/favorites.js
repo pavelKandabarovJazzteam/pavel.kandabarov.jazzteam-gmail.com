@@ -19,12 +19,12 @@ $(document).ready(() => {
                 break;
         }
     }
-    $(".btn.btn-dark.favorites-link").click(() => {
+    $(".btn.btn-dark.favorites-link").click(function()  {
         setLocal("param", $(this)[0].dataset.param);
         setLocal("value", $(this).text());
         document.location.href = "/public/category";
     });
-    $(".remove-favorites").click(() => {
+    $(".remove-favorites").click(function()  {
         removeCookies("favorites");
         removeCookies("favorites-param");
         $(".btn.btn-dark.favorites-link").remove();
