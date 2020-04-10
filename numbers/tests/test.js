@@ -8,22 +8,22 @@ describe("Test of input number", function() {
         assert.equal(numberLength(123), 3);
     });
     for (let key in units) {
-        it('Output ' + key, function() {
+        it('Input ' + key + ", expected output " +units[key], function() {
             assert.notStrictEqual(calculateUnits(key), key);
         });
     }
     for (let key in tens) {
-        it('Output ' + key, function() {
+        it('Input ' + key + ", expected output " +tens[key], function() {
             assert.strictEqual(calculateTen(key, 2), tens[key]);
         });
     }
     for (let key in hundreds) {
-        it('Output ' + key, function() {
+        it('Input ' + key + ", expected output " +hundreds[key], function() {
             assert.strictEqual(calculateTen(key), tens[key]);
         });
     }
     for (let key in total) {
-        it('Output ' + key, function() {
+        it('Input ' + key + ", expected output " +total[key], function() {
             assert.strictEqual(calculate(key, 3), total[key]);
         });
     }

@@ -57,19 +57,19 @@ const calculateUnits = (number) => {
  * @param {number} length of input number
  * @return {string}
  */
- const calculate = (number, length) => {
-     let result = "";
-     switch (length) {
-         case 3:
-             result += calculateHundred(number);
-         case 2:
-             result += calculateTen(number, length);
-         case 1:
-             result += calculateUnits(number);
-             break;
-     }
-     return result;
- }
+const calculate = (number, length) => {
+    let result = "";
+    switch (length) {
+        case 3:
+            result += calculateHundred(number);
+        case 2:
+            result += calculateTen(number, length);
+        case 1:
+            result += calculateUnits(number);
+            break;
+    }
+    return result;
+}
 
 /** @Adds result to page
  * @param {number} number The input number
@@ -85,12 +85,30 @@ document.querySelector("#input").oninput = () => {
     let regxpr = input.dataset.regexp;
     regxpr = new RegExp(regxpr, 'i');
     let alert = document.querySelector(".alert");
-    if (!input.value.replace(/^0+/, '').trim().match(regxpr)) {
-        add.innerText = "";
-        alert.style.cssText = "opacity: 0;";
+    let zero = document.querySelector(".zero");
+    if (input.value.replace(/^0+/, '').length > 3) {
+        input.value = input.value.slice(0, 0);
         alert.style.cssText = "opacity: 1;";
-    }else{
-        alert.style.cssText = "opacity: 0;";
-        addReuslt(input.value.replace(/^0+/, '').trim());
+        add.innerText = "";
+        setTimeout(() => {
+            alert.style.cssText = "opacity: 0;"
+        }, 1000);
+    } else {
+        if (input.value == 0) {
+            zero.style.cssText = "opacity: 1;";
+            add.innerText = "";
+            if (input.value.length == 0) {
+                zero.style.cssText = "opacity: 0;";
+                alert.style.cssText = "opacity: 0;";
+                add.innerText = "";
+            }
+        } else if (!input.value.replace(/^0+/, '').trim().match(regxpr)) {
+            add.innerText = "";
+            alert.style.cssText = "opacity: 1;";
+        } else {
+            addReuslt(input.value.replace(/^0+/, '').trim());
+            zero.style.cssText = "opacity: 0;";
+        }
     }
+
 }
