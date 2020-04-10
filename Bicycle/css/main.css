@@ -501,7 +501,7 @@ body {
   height: 69px;
   border: 1px solid #d3d7d9;
   background-color: #ffffff;
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 24px;
   font-style: italic;
   padding-left: 15px;
@@ -556,7 +556,19 @@ footer .link {
   grid-area: link;
   padding-top: 10px;
 }
+@media all and (min-width: 1440px) {
+  .css-carousel .css-img {
+    width: 480px;
+  }
+}
 @media all and (max-width: 1024px) {
+  .css-carousel {
+    -webkit-animation: none;
+            animation: none;
+  }
+  .css-carousel .css-img {
+    width: 512px;
+  }
   .block1 {
     grid-template-areas: "bike1" "text" "bike2";
     grid-template-columns: 1fr;
@@ -589,8 +601,14 @@ footer .link {
   .input-submit {
     margin-top: 22px;
   }
+  .css-carousel .css-img {
+    width: 384px;
+  }
 }
 @media all and (max-width: 425px) {
+  .css-carousel .css-img {
+    width: 424px;
+  }
   .feedback__content {
     display: block;
   }

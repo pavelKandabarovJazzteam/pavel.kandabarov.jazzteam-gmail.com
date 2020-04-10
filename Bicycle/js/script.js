@@ -1,3 +1,4 @@
+//Scroll
 let AlreadyDone = false;
 let firstBlock = document.getElementsByClassName('background');
 let secondBlock = document.getElementsByClassName('about');
@@ -18,6 +19,8 @@ window.onscroll = function() {
     checkViewport()
 };
 
+
+//Slider
 let galeryVisible = document.getElementById('galery_visible');
 let galeryHidden = document.getElementById('script_galery');
 let timerId = setInterval(() => slider(), 2000);
