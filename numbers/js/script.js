@@ -6,18 +6,18 @@ const NUMBERS = {
     5: ["CCIƆƆ", "CCIƆƆCCIƆƆ", "CCIƆƆCCIƆƆCCIƆƆ", "CCIƆƆIƆƆƆ", "IƆƆƆ", "IƆƆƆCCIƆƆ", "IƆƆƆCCIƆƆCCIƆƆ", "IƆƆƆCCIƆƆCCIƆƆCCIƆƆ", "CCIƆƆCCCIƆƆƆ"]
 }
 
-const total = (num, len) => {
-    let secondSlice = (-len != -1) ? -len+1 : undefined;
+const getOrder = (num, len) => {
+    let secondSlice = (-len != -1) ? -len + 1 : undefined;
     return String(num).slice(-len, secondSlice);
 }
 
-const test = (number, length) => {
+const calculate = (number, length) => {
     let result = "";
-    for (let i = length ; i > 0; i--) {
-        if (total(number, i) - 1 === -1) {
+    for (let i = length; i > 0; i--) {
+        if (getOrder(number, i) - 1 === -1) {
             result += "";
-        }else{
-            result += NUMBERS[i][total(number, i) - 1 ]
+        } else {
+            result += NUMBERS[i][getOrder(number, i) - 1]
         }
     }
     return result;
@@ -30,16 +30,17 @@ const test = (number, length) => {
 let add = document.querySelector("#add_text");
 const addReuslt = (number) => {
     add.innerText = "";
-    add.append(test(number, number.length));
+    add.append(calculate(number, number.length));
 };
 
 document.querySelector("#input").oninput = () => {
-    let input = document.querySelector("#input");
-    let regxpr = input.dataset.regexp;
-    regxpr = new RegExp(regxpr, "i");
-    let alert = document.querySelector(".alert");
-    let zero = document.querySelector(".zero");
-    if (input.value.replace(/^0+/, "").length > 5) {
+    let input = document.querySelector("#input"),
+        maxLen = Object.keys(NUMBERS).length,
+        regxpr = new RegExp("^\\d{0," + maxLen + "}?$", "i"),
+        alert = document.querySelector(".alert"),
+        zero = document.querySelector(".zero");
+        
+    if (input.value.replace(/^0+/, "").length > maxLen) {
         input.value = input.value.slice(0, 0);
         alert.style.cssText = "opacity: 1;";
         add.innerText = "";
